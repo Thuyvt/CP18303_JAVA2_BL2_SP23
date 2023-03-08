@@ -44,6 +44,7 @@ public class QuanLyMonAn {
             }
         }
     }
+    
     // tinh tong tien phai tra
     public void tinhTong(List<MonAn> list) {
         int tong = 0;
@@ -76,5 +77,10 @@ public class QuanLyMonAn {
         // C2: lamda expression
         list.sort((a1, a2) -> a2.getTong() - a1.getTong());
         xuat(list);
+    }
+
+    public void keThua(List<MonAn> list) {
+        MonAn ts = new TraSua("Tran chau trang", "Hong tra sua", 35000, 2);
+        System.out.println(ts.toString());
     }
 }

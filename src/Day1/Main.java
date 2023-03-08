@@ -21,11 +21,12 @@ public class Main {
         List<MonAn> list = new ArrayList<>();
         while (true) {
             System.out.println("===========Menu============");
-            System.out.println("1. ");
-            System.out.println("2. ");
-            System.out.println("3. ");
-            System.out.println("4. ");
-            System.out.println("5. ");
+            System.out.println("1. Nhap");
+            System.out.println("2. Xuat");
+            System.out.println("3. Tinh tong");
+            System.out.println("4. Tim max");
+            System.out.println("5. Sap xep");
+            System.out.println("6. Ke thua");
             System.out.println("===========Menu============");
             System.out.println("Nhap chuong trinh can chay:");
             String menu = sc.nextLine();
@@ -48,6 +49,10 @@ public class Main {
                 }
                 case "5" -> {
                     ql.sapXep(list);
+                    break;
+                }
+                case "6" -> {
+                    ql.keThua(list);
                     break;
                 }
                 case "0" -> {
