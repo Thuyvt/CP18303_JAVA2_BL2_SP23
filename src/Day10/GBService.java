@@ -43,7 +43,7 @@ public class GBService {
             ObjectInputStream ois = new ObjectInputStream(fis);
             
             List<GiuongBenh> listTuFile = (List<GiuongBenh>) ois.readObject();
-            danhSach = new ArrayList<>(); // tạo mới 1 danh sách ko có phần tử
+            danhSach.clear(); // tạo mới 1 danh sách ko có phần tử
             danhSach.addAll(listTuFile); // thêm dữ liệu đọc từ file vào danh sách
             System.out.println("danhSach mới:" + danhSach.size());
             // đóng luồng

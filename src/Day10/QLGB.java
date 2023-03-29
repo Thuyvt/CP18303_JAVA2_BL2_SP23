@@ -90,6 +90,20 @@ public class QLGB extends javax.swing.JFrame {
         txtSoGiuong.setText(String.valueOf(gb.getSoGiuong()));
         txtSoPhong.setText(gb.getSoPhong());
     }
+    
+    public GiuongBenh layDuLieuTuForm() {
+        String khoa = "Khoa noi";
+        if (rdoKhoaNgoai.isSelected()) {
+            khoa = "Khoa ngoai";
+        } else if (rdoKhoaSan.isSelected()) {
+            khoa = "Khoa san";
+        }
+        return new GiuongBenh(txtTenBN.getText(), Integer.parseInt(txtMaBN.getText()), 
+                txtSoPhong.getText(), Integer.parseInt(txtSoGiuong.getText()), txtBacSi.getText(),
+                cboChucVu.getSelectedItem().toString(), chkVip.isSelected(), 
+                rdoKhoaNgoai.isSelected() ? "Khoa ngoai" : rdoKhoaSan.isSelected() ? "Khoa san" : "Khoa noi",
+                Double.parseDouble(txtTien.getText()), Integer.parseInt(txtSoNgay.getText()));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -215,6 +229,11 @@ public class QLGB extends javax.swing.JFrame {
         });
 
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -371,6 +390,15 @@ public class QLGB extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnDocActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        // Kiểm tra dữ liệu nhập vào
+        // thêm đối tượng vào danh sách
+        listGb.add(layDuLieuTuForm());
+        // hiển thị lại lên bảng
+        hienThiLenBang(listGb);
+    }//GEN-LAST:event_btnThemActionPerformed
 
     /**
      * @param args the command line arguments
