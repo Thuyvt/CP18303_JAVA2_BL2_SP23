@@ -24,7 +24,7 @@ public class QLGB extends javax.swing.JFrame {
      */
     public QLGB() {
         initComponents();
-        
+
         // tạo kết nối DefaultTableModel và table
         defaultTable = (DefaultTableModel) tblGiuongBenh.getModel();
         // tạo danh sách mặc định
@@ -35,7 +35,7 @@ public class QLGB extends javax.swing.JFrame {
         // index = 3
         hienThiLenForm(listGb.get(3));
     }
-    
+
     // tạo danh sách mặc dịnh
     public void listMacDinh(List<GiuongBenh> danhSach) {
         // Combo box: Bac si CKI, Bac si CKII, Pho khoa, Truong khoa
@@ -47,15 +47,16 @@ public class QLGB extends javax.swing.JFrame {
                 false, "Khoa ngoai", 15333, 2));
         danhSach.add(new GiuongBenh("D", 4, "P303", 6, "loan", "Bac si CKII",
                 false, "Khoa san", 11000, 3));
-        danhSach.add(new GiuongBenh("E", 7, "H310", 10, "mai", "Bac si CKI",
-                true, "Khoa noi", 97628, 2));
+//        danhSach.add(new GiuongBenh("E", 7, "H310", 10, "mai", "Bac si CKI",
+//                true, "Khoa noi", 97628, 2));
     }
+
     // hiển thị danh sách lên bảng
     public void hienThiLenBang(List<GiuongBenh> danhSach) {
         // reset bảng về 0
         defaultTable.setRowCount(0);
-        for(GiuongBenh gb: danhSach) {
-            defaultTable.addRow(new Object[] {
+        for (GiuongBenh gb : danhSach) {
+            defaultTable.addRow(new Object[]{
                 gb.getTenBN(),
                 gb.getMaBN(),
                 gb.getSoPhong(),
@@ -69,6 +70,7 @@ public class QLGB extends javax.swing.JFrame {
             });
         }
     }
+
     // hiển thị đối tượng lên form
     public void hienThiLenForm(GiuongBenh gb) {
         txtTenBN.setText(gb.getTenBN());
@@ -88,6 +90,7 @@ public class QLGB extends javax.swing.JFrame {
         txtSoGiuong.setText(String.valueOf(gb.getSoGiuong()));
         txtSoPhong.setText(gb.getSoPhong());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -205,6 +208,11 @@ public class QLGB extends javax.swing.JFrame {
         });
 
         btnDoc.setText("Đọc");
+        btnDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDocActionPerformed(evt);
+            }
+        });
 
         btnThem.setText("Thêm");
 
@@ -352,6 +360,17 @@ public class QLGB extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, mes);
         }
     }//GEN-LAST:event_btnGhiActionPerformed
+
+    private void btnDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocActionPerformed
+        // TODO add your handling code here:
+        String mes = new GBService().docFile("giuongbenh.txt", listGb);
+        JOptionPane.showMessageDialog(this, mes);
+        if (mes.equalsIgnoreCase("Đọc file thành công")) {
+            hienThiLenBang(listGb);
+            System.out.println("danhSach hiển thị:" + listGb.size());
+
+        }
+    }//GEN-LAST:event_btnDocActionPerformed
 
     /**
      * @param args the command line arguments
